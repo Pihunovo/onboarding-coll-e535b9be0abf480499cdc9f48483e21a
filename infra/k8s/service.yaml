@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: onboarding-coll-e535b9be0abf480499cdc9f48483e21a-srv
+spec:
+  selector:
+    app: onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 7070
+  type: ClusterIP

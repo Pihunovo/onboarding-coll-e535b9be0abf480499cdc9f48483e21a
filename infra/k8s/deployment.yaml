@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: onboarding-coll-e535b9be0abf480499cdc9f48483e21a-depl
+  labels:
+    app: onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+    release: prometheus  # Added label for PodMonitor discovery
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+      release: prometheus  # Added label for PodMonitor discovery
+  template:
+    metadata:
+      labels:
+        app: onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+        release: prometheus  # Added label for PodMonitor discovery
+    spec:
+      containers:
+        - name: onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+          image: 216084506783.dkr.ecr.ap-south-1.amazonaws.com/backstract_apps:onboarding-coll-e535b9be0abf480499cdc9f48483e21a
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 7070
+              name: http  # Optional for HTTP traffic
+            - containerPort: 7070 #same as the deployed code
+              name: metrics  # Added port for metrics scraping
